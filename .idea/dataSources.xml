@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="4051269912">
+    <data-source source="LOCAL" name="H2 - twitter_bd" uuid="96185ea1-c9d0-4335-8afe-0b3453255616">
+      <driver-ref>h2.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:file:$PROJECT_DIR$/src/main/webapp/database/twitter_bd</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
