@@ -1,5 +1,7 @@
 package com.github.talmars.model;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "USERS")
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -53,5 +56,20 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equal(id, user.id) &&
+                Objects.equal(password, user.password) &&
+                Objects.equal(login, user.login);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id, password, login);
     }
 }
