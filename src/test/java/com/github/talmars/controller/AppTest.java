@@ -42,6 +42,13 @@ public class AppTest {
     @Autowired
     private TweetService tweetService;
 
+    User user = new User();
+    {
+        user.setId(1l);
+        user.setLogin("login");
+        user.setPassword("password");
+    }
+
     @Test
     public void testRegisterUser() throws Exception {
 
@@ -66,7 +73,8 @@ public class AppTest {
     @Test
 
     public void testTweetGetInfo() throws Exception {
-        Tweet tweet = tweetService.getTweetInfo(1);
+        long id = tweetService.getAllTweets().get(0).getId();
+        Tweet tweet = tweetService.getTweetInfo(id);
         Assert.assertNotNull(tweet);
     }
 
@@ -86,7 +94,8 @@ public class AppTest {
 
     @Test
     public void testDeleteTweet() throws Exception {
-        boolean deleted = tweetService.deleteTweet(1);
+        long id = tweetService.getAllTweets().get(0).getId();
+        boolean deleted = tweetService.deleteTweet(id);
         Assert.assertTrue(deleted);
     }
 
@@ -104,6 +113,7 @@ public class AppTest {
 
     @Test
     public void testUpdateTweet() throws Exception{
+        long id = tweetService.getAllTweets().get(0).getId();
 
         Tweet tweet1 = new Tweet();
         tweet1.setText("11");
@@ -112,7 +122,7 @@ public class AppTest {
         user.setId(1l);
         tweet1.setOwner(user);
         tweet1.setCreatedAt(new Date());
-        Tweet tweet = tweetService.updateTweet(tweet1);
+        Tweet tweet = tweetService.updateTweet(tweetService.getTweetInfo(id));
         Assert.assertNotNull(tweet);
     }
 
